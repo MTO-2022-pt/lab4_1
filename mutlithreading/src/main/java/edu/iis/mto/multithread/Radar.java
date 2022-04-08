@@ -22,5 +22,11 @@ public class Radar {
 
         Thread launchingThread = new Thread(launchPatriotTask);
         launchingThread.start();
+        try{
+            launchingThread.join();
+        }
+        catch (InterruptedException e){
+            System.out.println("Launching interrupted");
+        }
     }
 }
