@@ -8,9 +8,9 @@ public class BetterRadar {
     private final PatriotBattery battery;
     private final Executor executor;
 
-    public BetterRadar(PatriotBattery battery, int counterRocketsPerMissle, Executor executor) {
+    public BetterRadar(PatriotBattery battery, int counterRocketsPerMissile, Executor executor) {
         this.battery = battery;
-        this.rocketCount = counterRocketsPerMissle;
+        this.rocketCount = counterRocketsPerMissile;
         this.executor = executor;
     }
 
