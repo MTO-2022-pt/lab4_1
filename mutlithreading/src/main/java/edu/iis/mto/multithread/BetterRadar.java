@@ -1,16 +1,22 @@
 package edu.iis.mto.multithread;
 
-public class Radar {
+public class BetterRadar {
 
-    private static final int ROCKET_COUNT = 10;
+    private int rocket_count = 1;
     private PatriotBattery battery;
 
-    public Radar(PatriotBattery battery) {
+    public BetterRadar(PatriotBattery battery) {
         this.battery = battery;
     }
 
+    public BetterRadar(PatriotBattery battery, int rocket_count) {
+        this.battery = battery;
+        if(rocket_count > 1)
+            this.rocket_count = rocket_count;
+    }
+
     public void notice(Scud enemyMissle) {
-        launchPatriot(enemyMissle, ROCKET_COUNT);
+        launchPatriot(enemyMissle, rocket_count);
     }
 
     private void launchPatriot(Scud enemyMissle, int rocketCount) {
@@ -22,5 +28,12 @@ public class Radar {
 
         Thread launchingThread = new Thread(launchPatriotTask);
         launchingThread.start();
+        try{
+            launchingThread.join();
+        }
+        catch (InterruptedException e){
+            System.out.println("Launching interrupted");
+        }
     }
+
 }
