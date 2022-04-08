@@ -44,8 +44,19 @@ class RadarTest {
     }
 
     @Test
+    void negativeRocketCountPassedTest() {
+        int rocket_count = -2; int enemy_rockets = 5;
+        BetterRadar radar = new BetterRadar(batteryMock, rocket_count);
+        Scud enemyMissle = new Scud();
+        for(int i = 0; i < enemy_rockets; i++){
+            radar.notice(enemyMissle);
+        }
+        verify(batteryMock, Mockito.times(enemy_rockets)).launchPatriot(enemyMissle);
+    }
+
+    @Test
     void weAreNotAtWorkRightNow() {
-        int rocket_count = 3; int enemy_rockets = 0;
+        int rocket_count = 3;
         BetterRadar radar = new BetterRadar(batteryMock, rocket_count);
         Scud enemyMissle = new Scud();
         verify(batteryMock, Mockito.times(0)).launchPatriot(enemyMissle);
