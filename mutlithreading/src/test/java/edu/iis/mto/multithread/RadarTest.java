@@ -20,7 +20,7 @@ class RadarTest {
     private ExecutorService executorService;
 
     @RepeatedTest(100)
-    void launchPatriotOnceWhenNoticesAScudMissile() {
+    void launchPatriot100TimesWhenNoticesAScudMissile() {
         int rocketsCount = 50;
         BetterRadar radar = new BetterRadar(batteryMock, rocketsCount, executorService);
         Scud enemyMissile = new Scud();
